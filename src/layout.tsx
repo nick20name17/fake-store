@@ -1,23 +1,31 @@
 import { ErrorBoundary } from 'react-error-boundary'
 import { Outlet } from 'react-router-dom'
 
+import { AppSidebar } from './components/app-sidebar'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
 import { ErrorPage } from './pages/error'
 import { MetaHead } from '@/components/meta-head'
 import { Toaster } from '@/components/ui/sonner'
 
 export const Layout = () => {
     return (
-        <>
+        <SidebarProvider>
+            <AppSidebar />
+
             <MetaHead />
-            <main className='mt-24 flex flex-col items-center justify-center'>
-                <ErrorBoundary fallback={<ErrorPage />}>
-                    <Outlet />
-                </ErrorBoundary>
-            </main>
+            <SidebarInset>
+                <main className='px-6 pt-2'>
+                    <SidebarTrigger />
+                    <ErrorBoundary fallback={<ErrorPage />}>
+                        <Outlet />
+                    </ErrorBoundary>
+                </main>
+            </SidebarInset>
+
             <Toaster
                 richColors
                 duration={5000}
             />
-        </>
+        </SidebarProvider>
     )
 }

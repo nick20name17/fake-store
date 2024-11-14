@@ -6,7 +6,6 @@ import {
     getSortedRowModel,
     useReactTable
 } from '@tanstack/react-table'
-import { useState } from 'react'
 
 import {
     Table,
@@ -20,27 +19,25 @@ import {
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+    setSorting: React.Dispatch<React.SetStateAction<SortingState>>
 }
 
-export function DataTable<TData, TValue>({
+export const UsersTabel = <TData, TValue>({
     columns,
-    data
-}: DataTableProps<TData, TValue>) {
-    const [sorting, setSorting] = useState<SortingState>([])
-
+    data,
+    setSorting
+}: DataTableProps<TData, TValue>) => {
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
-        state: {
-            sorting
-        }
+        manualSorting: true
     })
 
     return (
-        <div className='mt-4 w-full rounded-md border'>
+        <div className='mt-10 w-full rounded-md border'>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (

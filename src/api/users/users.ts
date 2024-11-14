@@ -1,6 +1,6 @@
 import { api } from '..'
 
-import type { User, UserAddData, UserPatchData, UserQueryParams } from './users.types'
+import type { User, UserAddData, UserQueryParams } from './users.types'
 import { getQueryParamString } from '@/utils/get-query-param-string'
 
 const usersApi = api.injectEndpoints({
@@ -22,16 +22,16 @@ const usersApi = api.injectEndpoints({
             },
             invalidatesTags: ['Users']
         }),
-        patchUser: builder.mutation<User, UserPatchData>({
-            query: ({ id, data }) => {
-                return {
-                    url: `/users/${id}`,
-                    method: 'PUT',
-                    body: data
-                }
-            },
-            invalidatesTags: ['Users']
-        }),
+        // patchUser: builder.mutation<User, UserPatchData>({
+        //     query: ({ id, data }) => {
+        //         return {
+        //             url: `/users/${id}`,
+        //             method: 'PUT',
+        //             body: data
+        //         }
+        //     },
+        //     invalidatesTags: ['Users']
+        // }),
         deleteUser: builder.mutation<User, number>({
             query: (id) => {
                 return {
@@ -47,6 +47,6 @@ const usersApi = api.injectEndpoints({
 export const {
     useGetUsersQuery,
     useAddUserMutation,
-    usePatchUserMutation,
+    // usePatchUserMutation,
     useDeleteUserMutation
 } = usersApi
