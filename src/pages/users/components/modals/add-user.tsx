@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { withMask } from 'use-mask-input'
 import { type infer as zodInfer } from 'zod'
 
-import { userAddSchema } from '../config/shemas'
+import { userAddSchema } from '../../config/shemas'
 
 import { useAddUserMutation } from '@/api/users/users'
 import { Button } from '@/components/ui/button'

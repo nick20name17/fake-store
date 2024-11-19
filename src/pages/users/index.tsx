@@ -1,10 +1,10 @@
 import type { SortingState } from '@tanstack/react-table'
 import { useState } from 'react'
 
+import { AddUserModal } from './components/modals/add-user'
+import { columns } from './components/table/columns'
+import { UsersTabel } from './components/table/table'
 import { useGetUsersQuery } from '@/api/users/users'
-import { columns } from '@/components/table/columns'
-import { AddUserModal } from '@/components/table/modals/add-user'
-import { UsersTabel } from '@/components/table/table'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 

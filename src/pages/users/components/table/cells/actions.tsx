@@ -1,7 +1,7 @@
 import { MoreHorizontal } from 'lucide-react'
 
-import { EditUserModal } from '../modals/edit-user'
-import { RemoveUserModal } from '../modals/remove-user'
+import { EditUserModal } from '../../modals/edit-user'
+import { RemoveUserModal } from '../../modals/remove-user'
 
 import type { User } from '@/api/users/users.types'
 import { Button } from '@/components/ui/button'

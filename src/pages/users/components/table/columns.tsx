@@ -1,9 +1,8 @@
 import { type ColumnDef } from '@tanstack/react-table'
 
-import { DataTableColumnHeader } from '../data-table-column-header'
-
 import { AddressCell } from './cells/address'
 import type { User } from '@/api/users/users.types'
+import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
 export const columns: ColumnDef<User>[] = [
     // {

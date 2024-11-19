@@ -4,9 +4,9 @@ import { toast } from 'sonner'
 import { withMask } from 'use-mask-input'
 import { z } from 'zod'
 
-import { DatePicker } from './date-picker'
 import { ThemeSelect } from './theme-select'
 import { Checkbox } from './ui/checkbox'
+import { DatePicker } from './ui/date-picker'
 import { PasswordWithReveal } from './ui/password-with-reveal'
 import { Button } from '@/components/ui/button'
 import {
