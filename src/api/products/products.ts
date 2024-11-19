@@ -22,6 +22,10 @@ const productsApi = api.injectEndpoints({
             },
             invalidatesTags: ['Products']
         }),
+        getAllCategories: builder.query<string[], void>({
+            query: () => '/products/categories',
+            providesTags: ['Products']
+        }),
         // patchProduct: builder.mutation<Product, ProductPatchData>({
         //     query: ({ id, data }) => {
         //         return {
@@ -46,6 +50,7 @@ const productsApi = api.injectEndpoints({
 
 export const {
     useGetProductsQuery,
+    useGetAllCategoriesQuery,
     useAddProductMutation,
     // usePatchProductMutation,
     useDeleteProductMutation

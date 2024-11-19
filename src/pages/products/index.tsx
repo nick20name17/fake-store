@@ -1,20 +1,19 @@
-import type { SortingState } from '@tanstack/react-table'
-import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
+import { CategoryFilter } from './components/filters/category'
+import { SortingFilter } from './components/filters/sorting'
 import { AddProductModal } from './components/modals/add-product'
 import { ProductList } from './components/products-list'
 import { useGetProductsQuery } from '@/api/products/products'
+import type { Sorting } from '@/api/products/products.types'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const ProductsPage = () => {
-    const [sorting, setSorting] = useState<SortingState>([])
-
-    const currentSortingDirection = sorting[0]?.desc ? 'desc' : 'asc'
+    const [searchParams] = useSearchParams()
 
     const { data: products, isLoading } = useGetProductsQuery({
-        limit: 30,
-        sorting: currentSortingDirection
+        sorting: (searchParams.get('sorting') as Sorting) || 'desc'
     })
 
     return (
@@ -31,6 +30,11 @@ export const ProductsPage = () => {
                     )}
                 </div>
                 <AddProductModal />
+            </div>
+
+            <div className='mt-4 flex items-center justify-between gap-x-4'>
+                <CategoryFilter />
+                <SortingFilter />
             </div>
 
             <ProductList products={products || []} />

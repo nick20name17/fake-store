@@ -1,3 +1,4 @@
+import { NuqsAdapter } from 'nuqs/adapters/react'
 import { type PropsWithChildren } from 'react'
 import { Provider } from 'react-redux'
 
@@ -6,8 +7,10 @@ import { store } from '@/store'
 
 export const Providers = ({ children }: PropsWithChildren) => {
     return (
-        <Provider store={store}>
-            <ThemeProvider defaultTheme='light'>{children}</ThemeProvider>
-        </Provider>
+        <NuqsAdapter>
+            <Provider store={store}>
+                <ThemeProvider defaultTheme='light'>{children}</ThemeProvider>
+            </Provider>
+        </NuqsAdapter>
     )
 }

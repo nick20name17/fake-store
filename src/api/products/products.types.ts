@@ -8,10 +8,11 @@ export interface Product {
 }
 
 export interface ProductAddData extends Omit<Product, '__v' | 'id'> {}
-
+export type Sorting = 'desc' | 'asc'
 export interface ProductQueryParams {
     offset: number
     limit: number
     search: string
-    sorting: 'desc' | 'asc'
+    category: string
+    sorting: Sorting
 }
