@@ -1,2 +1,2 @@
-export const appName = 'React Template'
-export const appDescription = 'React Template'
+export const appName = 'Fake Store'
+export const appDescription = 'Fake Store is a fake store website'
