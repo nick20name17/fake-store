@@ -41,14 +41,12 @@ export const RemoveUserModal = ({ user }: RemoveUserModalProps) => {
     return (
         <Dialog
             open={open}
-            onOpenChange={setOpen}
-        >
+            onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button
                     className='justify-start'
                     variant='ghost'
-                    size='sm'
-                >
+                    size='sm'>
                     <X className='mr-2 h-3.5 w-3.5' />
                     Remove
                 </Button>
@@ -58,8 +56,11 @@ export const RemoveUserModal = ({ user }: RemoveUserModalProps) => {
                     <DialogTitle>Are you absolutely sure?</DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently delete user
-                        <span className='font-bold text-primary'> {user.name}</span> and
-                        remove user data from our servers.
+                        <span className='font-bold text-primary'>
+                            {' '}
+                            {user.name.firstname + ' ' + user.name.lastname}
+                        </span>{' '}
+                        and remove user data from our servers.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -67,14 +68,12 @@ export const RemoveUserModal = ({ user }: RemoveUserModalProps) => {
                     <Button
                         className='w-28'
                         onClick={handleUserDelete}
-                        variant='destructive'
-                    >
+                        variant='destructive'>
                         {isLoading ? <Loader2 className='size-4' /> : 'Delete user'}
                     </Button>
                     <Button
                         onClick={() => setOpen(false)}
-                        variant='secondary'
-                    >
+                        variant='secondary'>
                         Cancel
                     </Button>
                 </div>

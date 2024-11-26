@@ -45,7 +45,7 @@ export const EditUserModal = ({ user }: EditUserModalProps) => {
         resolver: zodResolver(userEditSchema),
         defaultValues: {
             email: user.email,
-            name: user.name
+            name: user.name.firstname + ' ' + user.name.lastname
         }
     })
 
@@ -92,7 +92,10 @@ export const EditUserModal = ({ user }: EditUserModalProps) => {
                 <DialogHeader>
                     <DialogTitle>
                         Edit user{' '}
-                        <span className='font-bold text-primary'> {user.name}</span>{' '}
+                        <span className='font-bold text-primary'>
+                            {' '}
+                            {user.name.firstname + ' ' + user.name.lastname}
+                        </span>{' '}
                     </DialogTitle>
                 </DialogHeader>
 

@@ -22,16 +22,16 @@ const usersApi = api.injectEndpoints({
             },
             invalidatesTags: ['Users']
         }),
-        // patchUser: builder.mutation<User, UserPatchData>({
-        //     query: ({ id, data }) => {
-        //         return {
-        //             url: `/users/${id}`,
-        //             method: 'PUT',
-        //             body: data
-        //         }
-        //     },
-        //     invalidatesTags: ['Users']
-        // }),
+        patchUser: builder.mutation<User, any>({
+            query: ({ id, data }) => {
+                return {
+                    url: `/users/${id}`,
+                    method: 'PUT',
+                    body: data
+                }
+            },
+            invalidatesTags: ['Users']
+        }),
         deleteUser: builder.mutation<User, number>({
             query: (id) => {
                 return {
@@ -47,6 +47,6 @@ const usersApi = api.injectEndpoints({
 export const {
     useGetUsersQuery,
     useAddUserMutation,
-    // usePatchUserMutation,
+    usePatchUserMutation,
     useDeleteUserMutation
 } = usersApi

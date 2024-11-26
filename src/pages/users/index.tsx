@@ -35,7 +35,6 @@ export const UsersPage = () => {
             </div>
 
             <UsersTabel
-                sorting={sorting}
                 setSorting={setSorting}
                 data={users || []}
                 columns={columns}
