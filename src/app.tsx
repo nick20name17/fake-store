@@ -5,13 +5,19 @@ import { Layout } from './layout'
 import { CartPage } from './pages/cart'
 import { ErrorPage } from './pages/error'
 import { HomePage } from './pages/home'
+import { LoginPage } from './pages/login'
 import { ProductsPage } from './pages/products'
 import { UsersPage } from './pages/users'
+import { RequireAuthProvider } from './provider/require-auth'
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: (
+            <RequireAuthProvider>
+                <Layout />
+            </RequireAuthProvider>
+        ),
         errorElement: <ErrorPage />,
         children: [
             {
@@ -31,6 +37,10 @@ const router = createBrowserRouter([
                 element: <UsersPage />
             }
         ]
+    },
+    {
+        path: routes.login,
+        element: <LoginPage />
     },
     {
         path: '*',

@@ -3,10 +3,12 @@ import Helmet from 'react-helmet'
 import { usePageTitle } from '@/hooks/use-page-title'
 
 interface MetaHeadProps {
+    title?: string
     description?: string
 }
 
 export const MetaHead: React.FC<MetaHeadProps> = ({
+    title,
     description = 'some description'
 }) => {
     const pageTitle = usePageTitle()
@@ -14,7 +16,7 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
     return (
         <Helmet>
             <meta charSet='utf-8' />
-            <title>{pageTitle}</title>
+            <title>{title ? title : pageTitle}</title>
             <meta
                 name='description'
                 content={description}

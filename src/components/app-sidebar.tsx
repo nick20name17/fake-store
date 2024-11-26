@@ -8,7 +8,7 @@ import {
     User2,
     Users
 } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import {
     DropdownMenu,
@@ -69,6 +69,12 @@ const items = [
 export function AppSidebar() {
     const { state } = useSidebar()
     const { pathname } = useLocation()
+    const navigate = useNavigate()
+
+    const handleSignOut = async () => {
+        navigate(routes.login)
+        localStorage.removeItem('token')
+    }
 
     return (
         <Sidebar
@@ -148,7 +154,9 @@ export function AppSidebar() {
                             <DropdownMenuContent
                                 side='top'
                                 className='w-[--radix-popper-anchor-width]'>
-                                <DropdownMenuItem className='flex items-center gap-x-2'>
+                                <DropdownMenuItem
+                                    onClick={handleSignOut}
+                                    className='flex items-center gap-x-2'>
                                     <LogOut className='size-4' />
                                     <span>Sign out</span>
                                 </DropdownMenuItem>
