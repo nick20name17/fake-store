@@ -3,7 +3,8 @@ export const routes = {
     users: '/users',
     products: '/products',
     cart: '/cart',
-    login: '/login'
+    login: '/login',
+    dashboard: '/dashboard'
 }
 
 export const publicRoutes = [routes.home, routes.login, routes.products]

@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { routes } from './config/routes'
 import { Layout } from './layout'
 import { CartPage } from './pages/cart'
+import { DashboardPage } from './pages/dashboard'
 import { ErrorPage } from './pages/error'
 import { HomePage } from './pages/home'
 import { LoginPage } from './pages/login'
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage />
+            },
+            {
+                path: routes.dashboard,
+                element: <DashboardPage />
             },
             {
                 path: routes.cart,

@@ -1,5 +1,6 @@
 import {
     Box,
+    ChartArea,
     ChevronUp,
     Home,
     LogOut,
@@ -45,6 +46,11 @@ const items = [
         url: routes.home,
         icon: Home,
         tooltip: 'Home Page'
+    },
+    {
+        title: 'Dashboard',
+        url: routes.dashboard,
+        icon: ChartArea
     },
     {
         title: 'Cart',
