@@ -11,6 +11,8 @@ import {
 } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { ModeToggle } from './mode-toggle'
+import { Separator } from './ui/separator'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -39,7 +41,6 @@ import {
 import { routes } from '@/config/routes'
 import { cn } from '@/lib/utils'
 
-// Menu items.
 const items = [
     {
         title: 'Home',
@@ -72,7 +73,7 @@ const items = [
     }
 ]
 
-export function AppSidebar() {
+export const AppSidebar = () => {
     const { state } = useSidebar()
     const { pathname } = useLocation()
     const navigate = useNavigate()
@@ -96,7 +97,7 @@ export function AppSidebar() {
                         <Box className='size-6 text-primary' />
                         <h1
                             className={cn(
-                                'text-lg font-bold text-background',
+                                'text-lg font-bold text-white',
                                 state === 'collapsed' ? 'hidden' : ''
                             )}>
                             Fake Store
@@ -160,6 +161,10 @@ export function AppSidebar() {
                             <DropdownMenuContent
                                 side='top'
                                 className='w-[--radix-popper-anchor-width]'>
+                                <DropdownMenuItem asChild>
+                                    <ModeToggle />
+                                </DropdownMenuItem>
+                                <Separator />
                                 <DropdownMenuItem
                                     onClick={handleSignOut}
                                     className='flex items-center gap-x-2'>
