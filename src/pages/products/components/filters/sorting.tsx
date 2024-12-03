@@ -1,6 +1,5 @@
 import { ArrowDownAz, ArrowDownZA } from 'lucide-react'
 import { useQueryState } from 'nuqs'
-import { useEffect } from 'react'
 
 import {
     Select,
@@ -12,16 +11,13 @@ import {
 
 export const SortingFilter = () => {
     const [sorting, setSorting] = useQueryState('sorting', {
-        defaultValue: 'desc'
+        defaultValue: 'asc',
+        clearOnDefault: false
     })
 
     const onChange = (sorting: string) => {
         setSorting(sorting)
     }
-
-    useEffect(() => {
-        setSorting(sorting)
-    }, [])
 
     return (
         <Select

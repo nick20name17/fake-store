@@ -12,16 +12,15 @@ import {
 export const CategoryFilter = () => {
     const { data: categories } = useGetAllCategoriesQuery()
 
-    const [category, setCategory] = useQueryState('category', { defaultValue: '' })
-
-    const onChange = (category: string) => {
-        setCategory(category)
-    }
+    const [category, setCategory] = useQueryState('category', {
+        defaultValue: '',
+        clearOnDefault: false
+    })
 
     return (
         <Select
             value={category}
-            onValueChange={onChange}>
+            onValueChange={setCategory}>
             <SelectTrigger>
                 <SelectValue placeholder='Choose category' />
             </SelectTrigger>
