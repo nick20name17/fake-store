@@ -1,4 +1,5 @@
 import Helmet from 'react-helmet'
+import { useTranslation } from 'react-i18next'
 
 import { usePageTitle } from '@/hooks/use-page-title'
 
@@ -12,9 +13,10 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
     description = 'some description'
 }) => {
     const pageTitle = usePageTitle()
+    const { i18n } = useTranslation()
 
     return (
-        <Helmet>
+        <Helmet htmlAttributes={{ lang: i18n.language }}>
             <meta charSet='utf-8' />
             <title>{title ? title : pageTitle}</title>
             <meta

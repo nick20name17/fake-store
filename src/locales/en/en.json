@@ -1,0 +1,5 @@
+{
+    "welcomeMessage": "Welcome to React and react-i18next",
+    "counter_one": "{{count}} item",
+    "counter_other": "{{count}} items"
+}

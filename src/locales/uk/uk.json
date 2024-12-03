@@ -1,0 +1,5 @@
+{
+    "welcomeMessage": "Ласкаво просимо до React та react-i18next",
+    "counter_one": "{{count}} елемент",
+    "counter_other": "{{count}} елементи"
+}

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { LangSelect } from './lang-select'
 import { ModeToggle } from './mode-toggle'
 import { Separator } from './ui/separator'
 import {
@@ -161,6 +162,10 @@ export const AppSidebar = () => {
                             <DropdownMenuContent
                                 side='top'
                                 className='w-[--radix-popper-anchor-width]'>
+                                <Separator />
+                                <DropdownMenuItem asChild>
+                                    <LangSelect />
+                                </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
                                     <ModeToggle />
                                 </DropdownMenuItem>
