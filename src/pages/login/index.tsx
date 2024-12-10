@@ -6,10 +6,11 @@ import { MetaHead } from '@/components/meta-head'
 import { buttonVariants } from '@/components/ui/button'
 import { Toaster } from '@/components/ui/sonner'
 import { routes } from '@/config/routes'
+import { useAuth } from '@/hooks/use-auth'
 import { cn } from '@/lib/utils'
 
 export const LoginPage = () => {
-    const isAuth = !!localStorage.getItem('token')
+    const { isAuth } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {

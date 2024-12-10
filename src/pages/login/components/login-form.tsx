@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
-import { useAddAuthMutation } from '@/api/auth/auth'
 import { Button } from '@/components/ui/button'
 import {
     Form,
@@ -20,6 +19,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { PasswordWithReveal } from '@/components/ui/password-with-reveal'
 import { routes } from '@/config/routes'
+import { useAuth } from '@/hooks/use-auth'
 import { cn } from '@/lib/utils'
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -35,43 +35,31 @@ const loginSchema = z.object({
             required_error: 'Password is required'
         })
         .min(1, 'Password is required')
-        // .min(8, 'Пароль повинен містити не менше 8 символів')
-        .regex(/[a-z]/, 'Пароль повинен містити не менше однієї малої літери')
-        // .regex(/[A-Z]/, 'Пароль повинен містити не менше однієї великої літери')
-        .regex(/[0-9]/, 'Пароль повинен містити не менше однієї цифри')
-        .regex(
-            /[!@#$%^&*]/,
-            'Пароль повинен містити не менше одного спеціального символу (!@#$%^&*)'
-        )
+    // // .min(8, 'Пароль повинен містити не менше 8 символів')
+    // .regex(/[a-z]/, 'Пароль повинен містити не менше однієї малої літери')
+    // // .regex(/[A-Z]/, 'Пароль повинен містити не менше однієї великої літери')
+    // .regex(/[0-9]/, 'Пароль повинен містити не менше однієї цифри')
+    // .regex(
+    //     /[!@#$%^&*]/,
+    //     'Пароль повинен містити не менше одного спеціального символу (!@#$%^&*)'
+    // )
 })
 
 type LoginFormData = z.infer<typeof loginSchema>
 
 export const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
+    const { login, isLoading, isError } = useAuth()
     const navigate = useNavigate()
-    const [errorMessage, setErrorMessage] = React.useState('')
+    // const [errorMessage, setErrorMessage] = React.useState('')
 
     const form = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema)
     })
 
-    const [login, { isLoading }] = useAddAuthMutation()
-
-    const handleLogin = async (formData: LoginFormData) => {
-        try {
-            await login(formData)
-                .unwrap()
-                .then((response) => {
-                    navigate(routes.home)
-                    localStorage.setItem('token', response.token)
-                })
-        } catch (error: any) {
-            setErrorMessage(error.data || 'Something went wrong')
-        }
-    }
-
     const onSubmit = (formData: LoginFormData) => {
-        handleLogin(formData)
+        login(formData.username, formData.password).then(() => {
+            navigate(routes.home)
+        })
     }
 
     return (
@@ -121,9 +109,9 @@ export const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                     </Button>
                 </form>
             </Form>
-            {errorMessage ? (
+            {isError ? (
                 <div className='rounded-md bg-destructive-foreground p-2 text-sm text-destructive'>
-                    {errorMessage}
+                    Something went wrong
                 </div>
             ) : null}
         </div>

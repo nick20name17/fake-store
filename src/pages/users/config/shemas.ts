@@ -29,7 +29,7 @@ const nameSchema = z.object({
 })
 
 export const userAddSchema = z.object({
-    username: z
+    email: z
         .string({
             required_error: 'Username is required.'
         })

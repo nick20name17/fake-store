@@ -35,7 +35,7 @@ export const AddUserModal = () => {
         resolver: zodResolver(userAddSchema),
         defaultValues: {
             email: '',
-            username: '',
+            email: '',
             password: '',
             name: {
                 firstname: '',
@@ -119,7 +119,7 @@ export const AddUserModal = () => {
                         />
                         <FormField
                             control={form.control}
-                            name='username'
+                            name='email'
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>User name</FormLabel>

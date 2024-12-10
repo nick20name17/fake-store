@@ -81,7 +81,8 @@ export const AppSidebar = () => {
 
     const handleSignOut = async () => {
         navigate(routes.login)
-        localStorage.removeItem('token')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
     }
 
     return (

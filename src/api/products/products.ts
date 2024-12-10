@@ -1,6 +1,7 @@
 import { api } from '..'
 
 import type { Product, ProductAddData, ProductQueryParams } from './products.types'
+import { baseUrl } from '@/config/api'
 import { getQueryParamString } from '@/utils/get-query-param-string'
 
 const productsApi = api.injectEndpoints({
@@ -8,14 +9,14 @@ const productsApi = api.injectEndpoints({
         getProducts: builder.query<Product[], Partial<ProductQueryParams>>({
             query: (queryParams) => {
                 const queryParamsString = getQueryParamString(queryParams)
-                return `/products?${queryParamsString}`
+                return `${baseUrl}/products?${queryParamsString}`
             },
             providesTags: ['Products']
         }),
         addProduct: builder.mutation<Product, ProductAddData>({
             query: (data) => {
                 return {
-                    url: '/products',
+                    url: `${baseUrl}/products`,
                     method: 'POST',
                     body: data
                 }
@@ -23,7 +24,7 @@ const productsApi = api.injectEndpoints({
             invalidatesTags: ['Products']
         }),
         getAllCategories: builder.query<string[], void>({
-            query: () => '/products/categories',
+            query: () => `${baseUrl}/products/categories`,
             providesTags: ['Products']
         }),
         // patchProduct: builder.mutation<Product, ProductPatchData>({
@@ -39,7 +40,7 @@ const productsApi = api.injectEndpoints({
         deleteProduct: builder.mutation<Product, number>({
             query: (id) => {
                 return {
-                    url: `/products/${id}`,
+                    url: `${baseUrl}/products/${id}`,
                     method: 'DELETE'
                 }
             },

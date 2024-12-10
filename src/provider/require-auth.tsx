@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { publicRoutes, routes } from '@/config/routes'
+import { useAuth } from '@/hooks/use-auth'
 
 export const RequireAuthProvider = ({ children }: React.PropsWithChildren) => {
     const navigate = useNavigate()
@@ -9,7 +10,7 @@ export const RequireAuthProvider = ({ children }: React.PropsWithChildren) => {
 
     const isPublicRoute = publicRoutes.includes(location.pathname)
 
-    const isAuth = !!localStorage.getItem('token')
+    const { isAuth } = useAuth()
 
     if (!isAuth && !isPublicRoute) {
         navigate(routes.login, { replace: true })
