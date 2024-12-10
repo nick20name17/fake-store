@@ -8,7 +8,7 @@ import type { Product } from '@/api/products/products.types'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export const ProductsPage = () => {
+const ProductsPage = () => {
     // const [searchParams] = useSearchParams()
     // const [, setSorting] = useState<SortingState>([])
 
@@ -49,3 +49,5 @@ export const ProductsPage = () => {
         </section>
     )
 }
+
+export default ProductsPage

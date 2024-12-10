@@ -9,7 +9,7 @@ import { routes } from '@/config/routes'
 import { useAuth } from '@/hooks/use-auth'
 import { cn } from '@/lib/utils'
 
-export const LoginPage = () => {
+const LoginPage = () => {
     const { isAuth } = useAuth()
     const navigate = useNavigate()
 
@@ -78,3 +78,5 @@ export const LoginPage = () => {
         </>
     )
 }
+
+export default LoginPage

@@ -1,15 +1,18 @@
+import { Suspense, lazy } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
+import { PageLoader } from './components/ui/page-loader'
 import { routes } from './config/routes'
 import { Layout } from './layout'
 import { CartPage } from './pages/cart'
-import { DashboardPage } from './pages/dashboard'
-import { ErrorPage } from './pages/error'
 import { HomePage } from './pages/home'
-import { LoginPage } from './pages/login'
-import { ProductsPage } from './pages/products'
-import { UsersPage } from './pages/users'
 import { RequireAuthProvider } from './provider/require-auth'
+
+const DashboardPage = lazy(() => import('./pages/dashboard'))
+const ErrorPage = lazy(() => import('./pages/error'))
+const ProductsPage = lazy(() => import('./pages/products'))
+const UsersPage = lazy(() => import('./pages/users'))
+const LoginPage = lazy(() => import('./pages/login'))
 
 const router = createBrowserRouter([
     {
@@ -19,7 +22,11 @@ const router = createBrowserRouter([
                 <Layout />
             </RequireAuthProvider>
         ),
-        errorElement: <ErrorPage />,
+        errorElement: (
+            <Suspense fallback={<PageLoader />}>
+                <ErrorPage />
+            </Suspense>
+        ),
         children: [
             {
                 index: true,
@@ -27,7 +34,11 @@ const router = createBrowserRouter([
             },
             {
                 path: routes.dashboard,
-                element: <DashboardPage />
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <DashboardPage />
+                    </Suspense>
+                )
             },
             {
                 path: routes.cart,
@@ -35,21 +46,37 @@ const router = createBrowserRouter([
             },
             {
                 path: routes.products,
-                element: <ProductsPage />
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <ProductsPage />
+                    </Suspense>
+                )
             },
             {
                 path: routes.users,
-                element: <UsersPage />
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <UsersPage />
+                    </Suspense>
+                )
             }
         ]
     },
     {
         path: routes.login,
-        element: <LoginPage />
+        element: (
+            <Suspense fallback={<PageLoader />}>
+                <LoginPage />
+            </Suspense>
+        )
     },
     {
         path: '*',
-        element: <ErrorPage />
+        element: (
+            <Suspense fallback={<PageLoader />}>
+                <ErrorPage />
+            </Suspense>
+        )
     }
 ])
 

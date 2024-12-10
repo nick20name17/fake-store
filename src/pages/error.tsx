@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { routes } from '@/config/routes'
 
-export const ErrorPage = () => {
+const ErrorPage = () => {
     return (
         <main className='container flex h-screen flex-col items-center justify-center gap-y-10'>
             <h1 className='scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl'>
@@ -16,3 +16,5 @@ export const ErrorPage = () => {
         </main>
     )
 }
+
+export default ErrorPage

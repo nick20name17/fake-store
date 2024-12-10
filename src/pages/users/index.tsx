@@ -8,7 +8,7 @@ import type { User } from '@/api/users/users.types'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export const UsersPage = () => {
+const UsersPage = () => {
     const [, setSorting] = useState<SortingState>([])
     const [users, setUsers] = useState<User[]>([])
 
@@ -46,3 +46,5 @@ export const UsersPage = () => {
         </section>
     )
 }
+
+export default UsersPage

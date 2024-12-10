@@ -1,11 +1,13 @@
+import { lazy } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Outlet } from 'react-router-dom'
 
 import { AppSidebar } from './components/app-sidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
-import { ErrorPage } from './pages/error'
 import { MetaHead } from '@/components/meta-head'
 import { Toaster } from '@/components/ui/sonner'
+
+const ErrorPage = lazy(() => import('./pages/error'))
 
 export const Layout = () => {
     return (
