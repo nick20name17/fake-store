@@ -8,7 +8,7 @@ const usersApi = api.injectEndpoints({
         getUsers: builder.query<User[], Partial<UserQueryParams>>({
             query: (queryParams) => {
                 const queryParamsString = getQueryParamString(queryParams)
-                return `/users?${queryParamsString}`
+                return `/users/?${queryParamsString}`
             },
             providesTags: ['Users']
         }),

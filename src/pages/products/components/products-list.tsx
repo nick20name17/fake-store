@@ -13,6 +13,7 @@ import {
     CardHeader,
     CardTitle
 } from '@/components/ui/card'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { useSidebar } from '@/components/ui/sidebar'
 import {
     Tooltip,
@@ -31,17 +32,21 @@ export const ProductList = ({ products }: ProductListProps) => {
     const { state } = useSidebar()
 
     return (
-        <ul
-            className={cn(
-                'mt-10 grid h-[620px] w-full gap-4 overflow-y-auto rounded-md border p-4',
-                state === 'collapsed' ? 'grid-cols-3' : 'grid-cols-2'
-            )}>
-            {products.map((product) => (
-                <li key={product.id}>
-                    <ProductCard product={product} />
-                </li>
-            ))}
-        </ul>
+        <ScrollArea className='mt-10 h-[calc(100vh-220px)]'>
+            <ul
+                className={cn(
+                    'grid w-full gap-4 rounded-md border p-4',
+                    state === 'collapsed'
+                        ? 'grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 2xl:grid-cols-4'
+                        : 'grid-cols-2 max-lg:grid-cols-1 2xl:grid-cols-3'
+                )}>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <ProductCard product={product} />
+                    </li>
+                ))}
+            </ul>
+        </ScrollArea>
     )
 }
 

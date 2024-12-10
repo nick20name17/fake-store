@@ -35,7 +35,7 @@ export const AddUserModal = () => {
         resolver: zodResolver(userAddSchema),
         defaultValues: {
             email: '',
-            email: '',
+            username: '',
             password: '',
             name: {
                 firstname: '',
@@ -86,7 +86,7 @@ export const AddUserModal = () => {
             open={open}
             onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className='w-36'>
+                <Button className='w-36 max-[475px]:w-full'>
                     <UserRound className='mr-2 size-4' />
                     Add user
                 </Button>

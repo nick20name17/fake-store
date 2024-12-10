@@ -10,7 +10,8 @@ export default {
                 sm: 'calc(var(--radius) - 4px)'
             },
             container: {
-                center: true
+                center: true,
+                padding: '0.75rem'
             },
             colors: {
                 background: 'hsl(var(--background))',

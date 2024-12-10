@@ -68,7 +68,7 @@ export const AddProductModal = () => {
             open={open}
             onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className='w-36'>
+                <Button className='w-36 max-sm:w-full'>
                     <Package className='mr-2 size-4' />
                     Add product
                 </Button>

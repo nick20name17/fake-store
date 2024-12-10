@@ -7,6 +7,7 @@ import {
     useReactTable
 } from '@tanstack/react-table'
 
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import {
     Table,
     TableBody,
@@ -22,7 +23,7 @@ interface DataTableProps<TData, TValue> {
     setSorting: React.Dispatch<React.SetStateAction<SortingState>>
 }
 
-export const UsersTabel = <TData, TValue>({
+export const UsersTable = <TData, TValue>({
     columns,
     data,
     setSorting
@@ -37,7 +38,7 @@ export const UsersTabel = <TData, TValue>({
     })
 
     return (
-        <div className='mt-10 w-full rounded-md border'>
+        <ScrollArea className='mt-10 h-[700px] rounded-md border'>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
@@ -84,6 +85,7 @@ export const UsersTabel = <TData, TValue>({
                     )}
                 </TableBody>
             </Table>
-        </div>
+            <ScrollBar orientation='horizontal' />
+        </ScrollArea>
     )
 }

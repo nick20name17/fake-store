@@ -11,7 +11,8 @@ const baseQuery = fetchBaseQuery({
         }
 
         return headers
-    }
+    },
+    baseUrl: 'https://fakestoreapi.com'
 })
 
 const baseQueryWithReauth: any = async (args: any, api: any, extraOptions: any) => {
