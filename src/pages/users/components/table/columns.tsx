@@ -5,18 +5,6 @@ import type { User } from '@/api/users/users.types'
 import { DataTableColumnHeader } from '@/components/data-table-column-header'
 
 export const columns: ColumnDef<User>[] = [
-    // {
-    //     accessorKey: 'avatar',
-    //     header: 'Avatar',
-    //     cell: ({ row }) => (
-    //         <Avatar>
-    //             <AvatarImage src={row.original.avatar} />
-    //             <AvatarFallback>
-    //                 {row.original.name.charAt(0).toUpperCase()}
-    //             </AvatarFallback>
-    //         </Avatar>
-    //     )
-    // },
     {
         accessorKey: 'name',
         header: ({ column }) => (
@@ -60,26 +48,4 @@ export const columns: ColumnDef<User>[] = [
             />
         )
     }
-    // {
-    //     accessorKey: 'role',
-    //     header: ({ column }) => (
-    //         <DataTableColumnHeader
-    //             column={column}
-    //             title='Role'
-    //         />
-    //     ),
-    //     cell: ({ row }) => (
-    //         <div
-    //             className={cn(
-    //                 'w-fit rounded-full px-2.5 py-1 text-xs text-background',
-    //                 roleColors[row.original.role]
-    //             )}>
-    //             {row.original.role}
-    //         </div>
-    //     )
-    // },
-    // {
-    //     id: 'actions',
-    //     cell: ({ row }) => <ActionCell user={row.original} />
-    // }
 ]

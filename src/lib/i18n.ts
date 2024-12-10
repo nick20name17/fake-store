@@ -13,14 +13,15 @@ const resources = {
     }
 }
 
-i18n.use(initReactI18next).init({
+const i18nConfig = {
     resources,
     lng: 'uk',
     fallbackLng: 'en',
-
     interpolation: {
         escapeValue: false
     }
-})
+}
+
+i18n.use(initReactI18next).init(i18nConfig)
 
 export default i18n

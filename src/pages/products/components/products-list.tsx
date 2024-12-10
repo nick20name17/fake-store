@@ -15,14 +15,9 @@ import {
 } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useSidebar } from '@/components/ui/sidebar'
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
-import { trunc } from '@/utils/trunc'
+import { trunc } from '@/utils/text'
 
 interface ProductListProps {
     products: Product[]
@@ -72,16 +67,14 @@ const ProductCard = ({ product }: { product: Product }) => {
                 </CardTitle>
                 <CardDescription className='leading-7 [&:not(:first-child)]:mt-6'>
                     {product.description.length > 100 ? (
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <p> {trunc(product.description, 100)}</p>
-                                </TooltipTrigger>
-                                <TooltipContent className='max-w-96'>
-                                    <p> {product.description}</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <p> {trunc(product.description, 100)}</p>
+                            </TooltipTrigger>
+                            <TooltipContent className='max-w-96'>
+                                <p> {product.description}</p>
+                            </TooltipContent>
+                        </Tooltip>
                     ) : (
                         product.description
                     )}

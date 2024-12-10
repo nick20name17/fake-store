@@ -65,7 +65,7 @@ export const EditUserModal = ({ user }: EditUserModalProps) => {
                     setOpen(false)
                 })
         } catch (err: any) {
-            console.log(err)
+            console.error(err)
 
             toast.error(err.data.message ? err.data.message : 'Something went wrong')
         }

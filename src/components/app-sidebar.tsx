@@ -9,7 +9,7 @@ import {
     User2,
     Users
 } from 'lucide-react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { LangSelect } from './lang-select'
 import { ModeToggle } from './mode-toggle'
@@ -33,13 +33,9 @@ import {
     SidebarMenuItem,
     useSidebar
 } from '@/components/ui/sidebar'
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { routes } from '@/config/routes'
+import { useAuth } from '@/hooks/use-auth'
 import { cn } from '@/lib/utils'
 
 const items = [
@@ -77,36 +73,12 @@ const items = [
 export const AppSidebar = () => {
     const { state } = useSidebar()
     const { pathname } = useLocation()
-    const navigate = useNavigate()
-
-    const handleSignOut = async () => {
-        navigate(routes.login)
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
-    }
 
     return (
         <Sidebar
             collapsible='icon'
             variant='inset'>
-            <SidebarHeader className='border-b'>
-                <SidebarMenu>
-                    <SidebarMenuItem
-                        className={cn(
-                            'flex items-center gap-x-2',
-                            state === 'collapsed' ? 'mx-auto' : ''
-                        )}>
-                        <Box className='size-6 text-primary' />
-                        <h1
-                            className={cn(
-                                'text-lg font-bold text-white',
-                                state === 'collapsed' ? 'hidden' : ''
-                            )}>
-                            Fake Store
-                        </h1>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarHeader>
+            <AppSidebarHeader />
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -114,25 +86,23 @@ export const AppSidebar = () => {
                         <SidebarMenu>
                             {items.map((item) =>
                                 state === 'collapsed' ? (
-                                    <TooltipProvider>
-                                        <Tooltip>
-                                            <TooltipTrigger asChild>
-                                                <SidebarMenuItem key={item.title}>
-                                                    <SidebarMenuButton
-                                                        isActive={item.url === pathname}
-                                                        asChild>
-                                                        <Link to={item.url}>
-                                                            <item.icon />
-                                                            <span>{item.title}</span>
-                                                        </Link>
-                                                    </SidebarMenuButton>
-                                                </SidebarMenuItem>
-                                            </TooltipTrigger>
-                                            <TooltipContent className='ml-2'>
-                                                <p>{item.tooltip}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <SidebarMenuItem key={item.title}>
+                                                <SidebarMenuButton
+                                                    isActive={item.url === pathname}
+                                                    asChild>
+                                                    <Link to={item.url}>
+                                                        <item.icon />
+                                                        <span>{item.title}</span>
+                                                    </Link>
+                                                </SidebarMenuButton>
+                                            </SidebarMenuItem>
+                                        </TooltipTrigger>
+                                        <TooltipContent className='ml-2'>
+                                            <p>{item.tooltip}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
                                 ) : (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton
@@ -150,38 +120,70 @@ export const AppSidebar = () => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <SidebarMenuButton>
-                                    <User2 /> Username
-                                    <ChevronUp className='ml-auto' />
-                                </SidebarMenuButton>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent
-                                side='top'
-                                className='w-[--radix-popper-anchor-width]'>
-                                <Separator />
-                                <DropdownMenuItem asChild>
-                                    <LangSelect />
-                                </DropdownMenuItem>
-                                <DropdownMenuItem asChild>
-                                    <ModeToggle />
-                                </DropdownMenuItem>
-                                <Separator />
-                                <DropdownMenuItem
-                                    onClick={handleSignOut}
-                                    className='flex items-center gap-x-2'>
-                                    <LogOut className='size-4' />
-                                    <span>Sign out</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarFooter>
+            <AppSidebarFooter />
         </Sidebar>
+    )
+}
+
+const AppSidebarHeader = () => {
+    const { state } = useSidebar()
+
+    return (
+        <SidebarHeader className='border-b'>
+            <SidebarMenu>
+                <SidebarMenuItem
+                    className={cn(
+                        'flex items-center gap-x-2',
+                        state === 'collapsed' ? 'mx-auto' : ''
+                    )}>
+                    <Box className='size-6 text-primary' />
+                    <h1
+                        className={cn(
+                            'text-lg font-bold text-white',
+                            state === 'collapsed' ? 'hidden' : ''
+                        )}>
+                        Fake Store
+                    </h1>
+                </SidebarMenuItem>
+            </SidebarMenu>
+        </SidebarHeader>
+    )
+}
+
+const AppSidebarFooter = () => {
+    const { logout } = useAuth()
+    return (
+        <SidebarFooter>
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <SidebarMenuButton>
+                                <User2 /> Username
+                                <ChevronUp className='ml-auto' />
+                            </SidebarMenuButton>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            side='top'
+                            className='w-[--radix-popper-anchor-width]'>
+                            <Separator />
+                            <DropdownMenuItem asChild>
+                                <LangSelect />
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <ModeToggle />
+                            </DropdownMenuItem>
+                            <Separator />
+                            <DropdownMenuItem
+                                onClick={logout}
+                                className='flex items-center gap-x-2'>
+                                <LogOut className='size-4' />
+                                <span>Sign out</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </SidebarMenuItem>
+            </SidebarMenu>
+        </SidebarFooter>
     )
 }

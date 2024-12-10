@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 
 import { appName } from '@/config/app'
-import { capitalize } from '@/utils/capitalize'
+import { capitalize } from '@/utils/text'
 
 export const usePageTitle = () => {
     const location = useLocation()

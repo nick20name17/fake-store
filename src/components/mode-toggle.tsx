@@ -7,7 +7,7 @@ import {
     SelectTrigger,
     SelectValue
 } from '@/components/ui/select'
-import { useTheme } from '@/provider/theme-provider'
+import { useTheme } from '@/provider/theme'
 
 export const ModeToggle = () => {
     const { theme, setTheme } = useTheme()
