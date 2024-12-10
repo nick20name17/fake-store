@@ -64,7 +64,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
 export const Charts = ({ className }: { className?: string }) => {
     return (
-        <ScrollArea className='mt-10 h-[700px]'>
+        <ScrollArea className='mt-10 h-[calc(100vh-220px)]'>
             <div
                 className={cn(
                     'grid grid-cols-2 grid-rows-2 gap-4 max-xl:grid-cols-1 max-xl:grid-rows-1',
