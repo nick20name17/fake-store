@@ -6,7 +6,7 @@ const defaultLimit = 140
 
 const apiUrl = 'https://api.novaposhta.ua/v2.0/json/'
 
-const API_KEY = process?.env?.NOVA_POSHTA_API_KEY
+const API_KEY = import.meta.env.NOVA_POSHTA_API_KEY
 
 export const getCities = async (
     queryParams: CitiesQueryParams
