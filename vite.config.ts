@@ -6,7 +6,8 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '')
     return {
         define: {
-            'process.env': env
+            'process.env': env,
+            __APP_ENV__: process.env.VITE_VERCEL_ENV
         },
         plugins: [react()],
         resolve: {
